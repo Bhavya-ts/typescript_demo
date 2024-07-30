@@ -28,6 +28,10 @@ export const sigin = async (req :Request, res:Response, next:NextFunction) => {
   try {
     const user = await userModel.findOne({ email });
     // console.log(user);
+    if (!user) {
+      // Handle the case where user is not found
+      throw new Error('User not found');
+  }
     const isPasswordCorect = bcrypt.compare(password, user.password);
 
     if (!isPasswordCorect) {

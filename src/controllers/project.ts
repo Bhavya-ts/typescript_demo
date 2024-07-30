@@ -34,9 +34,13 @@ export const addRole = async (req :Request, res:Response, next:NextFunction) => 
 
   //check a project status if draft then only add role
   const chekStatus = await project.findById(projectId);
+  if (!chekStatus) {
+    // Handle the case where user is not found
+    throw new Error('project not found');
+}
   console.log("checkstatus : ", chekStatus.status);
 
-  if (chekStatus === "Active") {
+  if (chekStatus.status === "Active") {
     return res.send("Project is in active status, you can't add role now");
   }
 
@@ -53,7 +57,10 @@ export const editProject = async (req :Request, res:Response, next:NextFunction)
   const { projectId, name, description, status } = req.body;
 
   const projectData = await project.findById(projectId);
-
+  if (!projectData) {
+    // Handle the case where user is not found
+    throw new Error('User not found');
+}
   if (projectData.createdBy !== req.payload.userId) {
     return res
       .status(400)
@@ -74,7 +81,10 @@ export const editRole = async (req :Request, res:Response, next:NextFunction) =>
   const { _id, projectId, name, role, description } = req.body;
 
   const projectData = await project.findById(projectId);
-
+  if (!projectData) {
+    // Handle the case where user is not found
+    throw new Error('project not found');
+  }
   if (projectData.createdBy !== req.payload.userId) {
     return res
       .status(400)
