@@ -12,4 +12,4 @@ router.get(
   showPerticcularProject
 );
 
-module.exports = router;
+export const publicRouter = router;

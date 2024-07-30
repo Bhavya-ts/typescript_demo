@@ -14,4 +14,4 @@ router.post("/addRole", middleware.is_auth, addRole);
 router.post("/editProject", middleware.is_auth, editProject);
 router.post("/editRole", middleware.is_auth, editRole);
 
-module.exports = router;
+export const projectRouter = router;
