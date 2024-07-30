@@ -2,11 +2,11 @@
 import  bcrypt  from "bcrypt";
 // import jwt from "jsonwebtoken";
 import jwt, { Secret, JwtPayload } from 'jsonwebtoken';
-import { userModel } from "../models/user";
+import { userModel } from "../models/user.js";
 // const userModel = require("../models/user");
-import {project} from "../models/project";
+import {project} from "../models/project.js";
 import { Request, Response, NextFunction } from 'express';
-import {roleModel} from "../models/role";
+import {roleModel} from "../models/role.js";
 
 export const sigin = async (req :Request, res:Response, next:NextFunction) => {
   const {
@@ -27,17 +27,18 @@ export const sigin = async (req :Request, res:Response, next:NextFunction) => {
 
   try {
     const user = await userModel.findOne({ email });
-    // console.log(user);
+    console.log(user);
     if (!user) {
       // Handle the case where user is not found
       throw new Error('User not found');
   }
     const isPasswordCorect = bcrypt.compare(password, user.password);
-
+    console.log("password is correct");
+    
     if (!isPasswordCorect) {
       return res.send("Invalid Password");
     }
-    // console.log(isPasswordCorect);
+    console.log(process.env.SECRET_KEY as string);
     //create the jwt tocken
     const jwtTocken = jwt.sign(
       { userId: user._id, email, role: user.role },

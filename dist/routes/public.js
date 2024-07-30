@@ -1,9 +1,5 @@
 import express from "express";
-import {
-  signup,
-  sigin,
-  showPerticcularProject,
-} from "../controllers/public.js";
+import { signup, sigin, showPerticcularProject } from "../controllers/public.js";
 import { is_auth } from "../middleware/jwtVarify.js";
 var router = express.Router();
 router.post("/signup", signup);

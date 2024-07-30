@@ -4,14 +4,13 @@ import {
   addRole,
   editProject,
   editRole,
-} from "../controllers/project";
+} from "../controllers/project.js";
 
-
-const middleware = require("../middleware/jwtVarify");
+import {is_auth} from "../middleware/jwtVarify.js";
 const router = express.Router();
-router.post("/addProject", middleware.is_auth, addProject);
-router.post("/addRole", middleware.is_auth, addRole);
-router.post("/editProject", middleware.is_auth, editProject);
-router.post("/editRole", middleware.is_auth, editRole);
+router.post("/addProject", is_auth, addProject);
+router.post("/addRole", is_auth, addRole);
+router.post("/editProject", is_auth, editProject);
+router.post("/editRole", is_auth, editRole);
 
 export const projectRouter = router;

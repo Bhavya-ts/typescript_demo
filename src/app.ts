@@ -2,9 +2,9 @@
 import express from "express";
 import mongoose from "mongoose";
 import bodyParser from "body-parser";
-import {publicRouter} from "./routes/public";
+import {publicRouter} from "./routes/public.js";
 // const publicRouter = require("./routes/public");
-import {projectRouter} from  "./routes/project";
+import {projectRouter} from  "./routes/project.js";
 // const projectRouter = require("./routes/project");
 import dotenv from "dotenv";
 // const dotenv = require("dotenv");

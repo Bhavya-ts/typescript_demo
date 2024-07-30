@@ -1,6 +1,6 @@
-import {project} from "../models/project";
+import {project} from "../models/project.js";
 import { Request, Response, NextFunction } from 'express';
-import {roleModel} from "../models/role";
+import {roleModel} from "../models/role.js";
 
 export const addProject = async (req :Request, res:Response, next:NextFunction) => {
   const {
